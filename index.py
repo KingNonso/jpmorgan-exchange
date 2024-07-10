@@ -1,26 +1,6 @@
-from typing import List
+
+from jpmorgan.gbce import GBCE
 from jpmorgan.stock import Stock
-
-
-class GBCE:
-    def __init__(self):
-        self.stocks: List[Stock] = []
-
-    def add_stock(self, stock: Stock):
-        self.stocks.append(stock)
-
-    def calculate_all_share_index(self) -> float:
-        n = len(self.stocks)
-        if n == 0:
-            return 0
-        
-        product_of_prices = 1
-        for stock in self.stocks:
-            price = stock.calculate_volume_weighted_stock_price()
-            if price > 0:
-                product_of_prices *= price
-        
-        return product_of_prices ** (1 / n)
 
 # Example usage
 if __name__ == "__main__":
